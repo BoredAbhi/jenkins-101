@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
-                withCredentials([usernamePassword(credentialsId: 'my-creds-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'my-user-pass', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh '''
                 echo "Using username $USERNAME"
                 echo "Using password $PASSWORD"
