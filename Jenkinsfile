@@ -4,9 +4,6 @@ pipeline {
             label 'docker-agent-python'
             }
       }
-    triggers {
-        pollSCM '* * * * *'
-    }
     stages {
         stage('Build') {
             steps {
@@ -41,4 +38,22 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'This always runs, cleanup or notifications.'
+        }
+        success {
+            echo 'Build succeeded! Send success notification.'
+        }
+        failure {
+            echo 'Build failed! Send failure alert.'
+        }
+        unstable {
+            echo 'Build is unstable! (maybe tests failed)'
+        }
+        changed {
+            echo 'Build status changed from last run.'
+        }
+    }
+
 }
