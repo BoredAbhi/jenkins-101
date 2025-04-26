@@ -4,6 +4,9 @@ pipeline {
             label 'docker-agent-python'
             }
       }
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'qa', 'prod'], description: 'Choose environment to run against')
+    }
     stages {
         stage('Build') {
             steps {
@@ -29,11 +32,11 @@ pipeline {
                 '''
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                echo 'Deliver....'
+                echo 'Deploying to ${params.ENV} environment'
                 sh '''
-                echo "doing delivery stuff..."
+                echo "doing delivery stuff... Deploying to ${params.ENV} environment"
                 '''
             }
         }
