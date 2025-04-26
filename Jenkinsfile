@@ -34,10 +34,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying to ${params.ENV} environment'
-                sh '''
+                echo "Deploying to ${params.ENV} environment"
+                sh """
                 echo "doing delivery stuff... Deploying to ${params.ENV} environment"
-                '''
+                """
             }
         }
     }
