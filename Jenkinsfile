@@ -23,7 +23,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
+                withCredentials([usernamePassword(credentialsId: 'my-creds-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh '''
+                echo "Using username $USERNAME"
+                echo "Using password $PASSWORD"
                 cd myapp
                 . venv/bin/activate
                 python3 hello.py
@@ -31,6 +34,7 @@ pipeline {
                 deactivate
                 '''
             }
+        }
         }
         stage('Deploy') {
             steps {
