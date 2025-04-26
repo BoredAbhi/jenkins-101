@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building..."
+                echo "Building...."
                 sh '''
                 cd myapp
                 python3 -m venv venv
